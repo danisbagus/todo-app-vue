@@ -9,11 +9,7 @@
           <p class="text-2xl text-shadow text-gray-300">
             Check your current activities
           </p>
-          <div>
-            <button class="p-2 rounded-md bg-red-500 text-gray-300">
-              Sign up to browse acivity
-            </button>
-          </div>
+          <div></div>
         </div>
       </div>
     </section>

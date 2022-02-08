@@ -27,8 +27,7 @@ export default {
   methods: {
     async handleLogout() {
       await Cookies.remove("token");
-      this.$router.push("/auth");
-      // window.location.reload();
+      window.location.reload();
     },
   },
 };

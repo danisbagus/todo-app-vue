@@ -180,13 +180,10 @@ export default {
     handleCloseModal() {
       this.isOpenModal = false;
     },
-    handleRefresh() {
-      console.log("hahaha");
-    },
+
     handleCreateTask() {
       console.log("action add task");
       this.isOpenModal = false;
-      this.handleRefresh();
     },
     convertData(value) {
       if (value) {

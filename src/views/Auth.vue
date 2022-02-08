@@ -6,11 +6,13 @@
       <p class="text-center font-semibold">Login Page</p>
       <hr class="border-blue-600" />
       <input
+        v-model="user.username"
         type="text"
         placeholder="username"
         class="px-2 py-1 focus:outline-none bg-gray-300 text-gray-900 rounded-md"
       />
       <input
+        v-model="user.password"
         type="password"
         placeholder="password"
         class="px-2 py-1 focus:outline-none bg-gray-300 text-gray-900 rounded-md"
@@ -28,8 +30,17 @@
 import Cookies from "js-cookie";
 export default {
   name: "Login",
+  data() {
+    return {
+      user: {
+        username: "",
+        password: "",
+      },
+    };
+  },
   methods: {
     async handleLogin() {
+      console.log("userdata", this.user);
       await Cookies.set("token", "example-token");
       window.location.reload();
     },

@@ -1,10 +1,12 @@
 import { createStore } from "vuex";
+import Cookies from "js-cookie";
 import ApiService from "../config/api.service";
 
 export default createStore({
   state: {
     tasks: [],
     taskPayload: {},
+    userPayload: {},
   },
 
   mutations: {
@@ -14,8 +16,28 @@ export default createStore({
     SET_TASK_PAYLOAD(state, data) {
       state.taskPayload = data;
     },
+    SET_USER_PAYLOAD(state, data) {
+      state.userPayload = data;
+    },
   },
   actions: {
+    login({ commit }) {
+      const payload = this.state.userPayload;
+      const payloadData = {
+        email: payload.email,
+        password: payload.password,
+      };
+      console.log(commit);
+      // ApiService.setToken();
+
+      ApiService.post("http://localhost:8000/login", payloadData).then(
+        (response) => {
+          console.log(response);
+          Cookies.set("token", response.data.api_token);
+          window.location.reload();
+        }
+      );
+    },
     getTasks({ commit }) {
       // ApiService.setToken();
       ApiService.get("http://localhost:8000/tasks").then((response) => {
@@ -61,8 +83,10 @@ export default createStore({
       );
     },
     setTaskPayload({ commit }, data) {
-      console.log("data payload", data);
       commit("SET_TASK_PAYLOAD", data);
+    },
+    setUserPayload({ commit }, data) {
+      commit("SET_USER_PAYLOAD", data);
     },
   },
   modules: {},
